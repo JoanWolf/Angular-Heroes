@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-primary" style="background-color: #590e0d">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" style="margin: 3px;">
+          <form class="container-fluid justify-content-start">
+            <button class="btn btn-outline me-2" type="button" style="color: aliceblue"><a class="nav-link active" aria-current="page" href="home" style="color: aliceblue">Home</a></button>
+          </form>
+        </li>
+        <li class="nav-item" routerLinkActive="active" style="margin: 5px;">
+          <form class="container-fluid justify-content-start">
+            <button class="btn btn-sm btn-outline" type="button" style="color: aliceblue"><a class="nav-link" routerLink="heroes" style="color: aliceblue">Heroes</a></button>
+          </form>
+        </li>
+        <li class="nav-item" routerLinkActive="active" style="margin: 5px;">
+    <form class="container-fluid justify-content-start">
+      <button class="btn btn-sm btn-outline" type="button" style="color: aliceblue"><a class="nav-link" routerLink="about" style="color: aliceblue">About</a></button>
+    </form>
+  </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="background-color: rgb(255, 255, 255); border-radius: 40px; box-shadow: 0 0 20px rgba(252, 252, 252, 0.5);">
+        <li>
+          <h1 class="nav-link" routerLink="home" style="color: #e90000; font-weight: bold;">
+            {{ titulo }}
+          </h1>
+        </li>
+      </ul>
+
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-light gray" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

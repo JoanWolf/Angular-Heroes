@@ -1,0 +1,21 @@
+<div class="container text-center">
+    <div class="row">
+        <h2>{{Nombre}}</h2>
+        <p></p>
+        <div *ngFor="let imgheroe of gelleryHeroe; let i = index" class="col">
+            <!-- <div *ngIf="imgheroe.id === id"> -->
+            <app-heroe-gallery [galleryheroes]="imgheroe"></app-heroe-gallery>
+
+            <!-- <div class="card" style="width: 18rem;">
+          <img src="{{imgheroe.url}}" class="card-img-top" alt="...">
+          <p>{{imgheroe.idHeroe}}</p>
+          <p>{{imgheroe.id}}</p>
+          <div class="card-body">
+            <h5 class="card-title">{{heroe.nombre}}</h5>
+            <p class="card-text">{{heroe.bio}}</p>
+            <a href="#" class="btn btn-primary">Clic!</a>
+          </div>
+        </div> -->
+        </div>
+    </div>
+</div>

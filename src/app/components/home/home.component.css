@@ -1,0 +1,19 @@
+#intro {
+    
+    margin-top: 100px;
+    margin-left: 320px; 
+    position: fixed;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    font-family: 'Verdana', monospace;
+}
+
+#cuerpo {
+    
+    margin-top: 200px;
+    margin-left: 150px; 
+    position: fixed;
+    font-weight: bold;
+    color: rgb(6, 253, 31);
+    font-family: 'Courier New', monospace;
+}
