@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HeroeGalleryComponent } from './components/heroe-gallery/heroe-gallery.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    //libreria
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

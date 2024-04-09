@@ -10,7 +10,7 @@ import { GalleryheroesService } from 'src/app/services/gallery/galleryheroes.ser
 })
 export class GalleryComponent {
 
-  gelleryHeroe:galleryheroes[] = [];
+  gelleryHeroe: (string | number | null)[] = [];
   id!:number;
   Nombre?: string="";
   constructor( private data:GalleryheroesService,private activatedRoute: ActivatedRoute,private router:Router){
@@ -29,11 +29,17 @@ export class GalleryComponent {
     });
   }
 
-  ngOnInit() {
-    this.gelleryHeroe = this.data.getGalleryHeroe(this.id);
-    console.log(this.gelleryHeroe.map(item=> item.Nombre));
-    this.Nombre = this.gelleryHeroe.values().next().value.Nombre;
+  async ngOnInit() {
+    let gellery: (string | number | null)[] = [];
+    gellery = await this.data.getGalleryHeroe(this.id);
+    this.gelleryHeroe = gellery.filter(item => item !== null) // Filtrar los elementos que son diferentes de null
+    .map(item => (item as any).IdMultimedia.url); // Acceder a la propiedad IdMultimedia.url de manera segura
+
+    console.log("heroe en el oninit",this.gelleryHeroe)
+    //console.log(this.gelleryHeroe.map(item=> item.Nombre));
+    this.Nombre = gellery.values().next().value.IdHeroe.nombre;
   }
+
 
   verHeroe( idx:number ){
     this.router.navigate( ['/gellery',idx] );
