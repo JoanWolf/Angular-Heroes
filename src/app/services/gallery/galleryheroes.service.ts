@@ -110,6 +110,11 @@ export class GalleryheroesService {
     //console.log(galleryArr)
     return galleryArr;
   }
+
+
+
+
+
   getGalleryHeroeX(idx: number): galleryheroes[] {
     console.log(idx);
     let galleryArr: galleryheroes[] = [];

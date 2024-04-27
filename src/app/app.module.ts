@@ -14,6 +14,12 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HeroeGalleryComponent } from './components/heroe-gallery/heroe-gallery.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListHeroesComponent } from './components/ListaHeroes/list-heroes/list-heroes.component';
+import { EditHeroesComponent } from './components/ListaHeroes/edit-heroes/edit-heroes.component';
+import { EditMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/edit-multheroes/edit-multheroes.component';
+import { ListMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/list-multheroes/list-multheroes.component';
+import { ListMultimediasComponent } from './components/ListaMultimedias/list-multimedias/list-multimedias.component';
+import { EditMultimediasComponent } from './components/ListaMultimedias/edit-multimedias/edit-multimedias.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +33,13 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     BuscadorComponent,
     HeroeGalleryComponent,
-    GalleryComponent
+    GalleryComponent,
+    ListHeroesComponent,
+    EditHeroesComponent,
+    EditMultheroesComponent,
+    ListMultheroesComponent,
+    ListMultimediasComponent,
+    EditMultimediasComponent
   ],
   imports: [
     BrowserModule,

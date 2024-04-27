@@ -5,15 +5,23 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { HeroeGalleryComponent } from './components/heroe-gallery/heroe-gallery.component';
-
+import { ListHeroesComponent } from './components/ListaHeroes/list-heroes/list-heroes.component';
+import { EditHeroesComponent } from './components/ListaHeroes/edit-heroes/edit-heroes.component';
+import { ListMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/list-multheroes/list-multheroes.component';
+import { EditMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/edit-multheroes/edit-multheroes.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'heroes', component: HeroesComponent },
+  { path: 'listaheroes', component: ListHeroesComponent },
+  { path: 'editHeroes', component: EditHeroesComponent },
   { path: 'about', component: AboutComponent },
   { path: 'gellery', component: GalleryComponent },
   { path: 'heroegallery/:idHeroe', component: HeroeGalleryComponent},
   { path: 'gellery/:idHeroe', component: GalleryComponent },
+  { path: 'listmultheroe/:idHeroe', component: ListMultheroesComponent },
+  { path: 'editmultheroe/:idHeroe', component: EditHeroesComponent },
+  { path: 'editHeroes/:idHeroe', component: EditHeroesComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 
 ];
