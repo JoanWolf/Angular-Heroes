@@ -46,4 +46,33 @@ export class MultheroeService {
     //console.log(galleryArr)
     return galleryArr;
   }
+
+  async getMultHeroes() {
+    let infoHeroesBD: any;
+    let galleryArr: (string | number | null)[] = [];
+
+    await this.dataBD
+      .getHeroesMult()
+      .toPromise()
+      .then((resp: any) => {
+        //this.heroes = resp.data;
+        //la linea anterior cambiarla asi:
+        //ya que los Datos vienen en la resp
+        infoHeroesBD = resp.resp;
+        console.log("LLegamos aqui")
+        console.log('Datos nuevos2 ', infoHeroesBD);
+      });
+
+    let NombreHeroe = '';
+    for (let i = 0; i < infoHeroesBD.length; i++) {
+      let heroe = infoHeroesBD[i];
+
+      console.log("heroe1",heroe);
+        console.log('entre');
+        console.log("heroe2",heroe);
+        galleryArr.push(heroe);
+    }
+    //console.log(galleryArr)
+    return galleryArr;
+  }
 }

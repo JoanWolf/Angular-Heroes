@@ -9,10 +9,15 @@ import { ListHeroesComponent } from './components/ListaHeroes/list-heroes/list-h
 import { EditHeroesComponent } from './components/ListaHeroes/edit-heroes/edit-heroes.component';
 import { ListMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/list-multheroes/list-multheroes.component';
 import { EditMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/edit-multheroes/edit-multheroes.component';
+import { ListMultimediasComponent } from './components/ListaMultimedias/list-multimedias/list-multimedias.component';
+import { EditMultimediasComponent } from './components/ListaMultimedias/edit-multimedias/edit-multimedias.component';
+
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'heroes', component: HeroesComponent },
+  { path: 'listamultimedias', component: ListMultimediasComponent },
   { path: 'listaheroes', component: ListHeroesComponent },
   { path: 'editHeroes', component: EditHeroesComponent },
   { path: 'about', component: AboutComponent },
