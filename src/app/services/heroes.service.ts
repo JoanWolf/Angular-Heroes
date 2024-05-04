@@ -13,7 +13,7 @@ export class HeroesService {
       img: "../../assets/Aquaman.jpg",
       aparicion: "1941-11-01",
       casa:"DC",
-      id:1
+      _id:'1'
     },
 
     {
@@ -22,16 +22,16 @@ export class HeroesService {
       img: "../../assets/Linterna.jpg",
       aparicion: "1940-06-01",
       casa: "DC",
-      id:5
+      _id:'5'
     },
-    
+
     {
       nombre: "Daredevil",
       bio: "Al haber perdido la vista, los cuatro sentidos restantes de Daredevil fueron aumentados por la radiación a niveles superhumanos, en el accidente que tuvo cuando era niño. A pesar de su ceguera, puede \"ver\" a través de un \"sexto sentido\" que le sirve como un radar similar al de los murciélagos.",
       img: "../../assets/Daredevil.png",
       aparicion: "1964-01-01",
       casa: "Marvel",
-      id:3
+      _id:'3'
     },
 
     {
@@ -40,33 +40,33 @@ export class HeroesService {
       img: "../../assets/spiderman.jpg",
       aparicion: "1962-08-01",
       casa: "Marvel",
-      id:6
+      _id:'6'
     },
-    
+
     {
       nombre: "Batman",
       bio: "Los rasgos principales de Batman se resumen en «destreza física, habilidades deductivas y obsesión». La mayor parte de las características básicas de los cómics han variado por las diferentes interpretaciones que le han dado al personaje.",
       img: "../../assets/batman.jpg",
       aparicion: "1939-05-01",
       casa:"DC",
-      id:2
+      _id:'2'
     },
-    
+
     {
       nombre: "Hulk",
       bio: "Su principal poder es su capacidad de aumentar su fuerza hasta niveles prácticamente ilimitados a la vez que aumenta su furia. Dependiendo de qué personalidad de Hulk esté al mando en ese momento (el Hulk Banner es el más débil, pero lo compensa con su inteligencia).",
       img: "../../assets/Hulk.jpg",
       aparicion: "1962-05-01",
       casa:"Marvel",
-      id:4
+      _id:'4'
     },
-    
-    
-    
+
+
+
   ];
 
-  constructor() { 
-    
+  constructor() {
+
 
   }
 

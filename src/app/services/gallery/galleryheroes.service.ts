@@ -80,7 +80,7 @@ export class GalleryheroesService {
     let galleryArr: (string | number | null)[] = [];
 
     await this.dataBD
-      .getHeroe(idx)
+      .getHeroe(idx,true)
       .toPromise()
       .then((resp: any) => {
         //this.heroes = resp.data;

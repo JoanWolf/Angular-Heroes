@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { heroe } from 'src/app/interfaces/heroe.interface';
 import { HeroesBDService } from 'src/app/services/heroes-bd.service';
 import { HeroesService } from 'src/app/services/heroes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-heroes',
@@ -15,6 +16,10 @@ export class ListHeroesComponent {
   infoHeroesBD: any;
   @Input() heroe: any ={};
   heroes: heroe[] = [];
+
+  unResultado!:any;
+  unaAccion: string = 'Mensaje';
+  unMensaje: string = '';
 
   // constructor( private data:HeroesService){
   //    this.heroes = data.getHeroes();
@@ -60,5 +65,50 @@ export class ListHeroesComponent {
 
         this.cargando = false;
       });
+  }
+
+  editarHeroe(unIdHeroe:any){
+    this.router.navigate(['/editHeroes', unIdHeroe]);
+  }
+
+  eliminarHeroe(unHeroe: any) {
+    //console.log(this.unaDivision);
+    this.dataBD.crud_Heroes(unHeroe, 'eliminar').subscribe(
+      (res: any) => {
+        this.unResultado = res;
+
+        //console.log(this.unResultado);
+        if (this.unResultado.Ok == true) {
+
+           Swal.fire({
+            icon: 'info',
+            title: 'Information',
+            text: 'Heroe Eliminado',
+          });
+
+          this.unaAccion = 'Mensaje:';
+          this.unMensaje = 'Heroe Eliminado';
+          setTimeout(() => (this.unMensaje = ''), 3000);
+
+
+          this.cargarData() ;
+
+        } else {
+          Swal.fire({
+            icon: 'info',
+            title: 'Information',
+            text: this.unResultado.msg,
+          });
+
+
+          this.unaAccion = 'Error:';
+          this.unMensaje = this.unResultado.msg;
+          setTimeout(() => (this.unMensaje = ''), 3000);
+        }
+      }
+      ,(error:any) => {
+        console.error(error)
+      }
+    );
   }
 }

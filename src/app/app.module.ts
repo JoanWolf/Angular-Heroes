@@ -20,6 +20,9 @@ import { EditMultheroesComponent } from './components/ListaHeroes/ListaMultimedi
 import { ListMultheroesComponent } from './components/ListaHeroes/ListaMultimediasHeroe/list-multheroes/list-multheroes.component';
 import { ListMultimediasComponent } from './components/ListaMultimedias/list-multimedias/list-multimedias.component';
 import { EditMultimediasComponent } from './components/ListaMultimedias/edit-multimedias/edit-multimedias.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,15 +42,18 @@ import { EditMultimediasComponent } from './components/ListaMultimedias/edit-mul
     EditMultheroesComponent,
     ListMultheroesComponent,
     ListMultimediasComponent,
-    EditMultimediasComponent
+    EditMultimediasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     //libreria
     HttpClientModule,
+    SweetAlert2Module.forRoot(),
+    //Aqui involucramos el Forms Module
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
