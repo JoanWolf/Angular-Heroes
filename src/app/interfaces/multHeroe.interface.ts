@@ -1,13 +1,13 @@
 export interface multHeroe{
   IdHeroe:{
-    _id?: number;
+    _id?: string;
     nombre: string;
   }
 
   IdMultimedia:{
-    _id?: number;
+    _id?: string;
     url: string;
   }
-
+  _id?:string;
 };
 

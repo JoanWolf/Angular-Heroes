@@ -85,6 +85,28 @@ export class HeroesBDService {
     );
   }
 
+  getMult(id:number):any{
+    var headers_object = new HttpHeaders().set('x-token', this.leerToken());
+
+    //console.log(headers_object);
+
+    //let url1 = URL_SERVICIOS_MONGODB + "/heroes";
+
+     let url = `${URL_SERVICIOS_MONGODB}/multimedias/${id}`;
+
+      console.log("Seleccion  "+url)
+
+
+    console.log(url);
+
+    return this.http.get(url).pipe(
+      map((data) => {
+        console.log("Data Inicial",data);
+        return data;
+      })
+    );
+  }
+
   crud_Heroes(unHeroe: heroe, unaAccion: string):any {
     //console.log(unExpediente);
 

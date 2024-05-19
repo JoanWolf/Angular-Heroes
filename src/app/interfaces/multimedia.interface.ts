@@ -1,15 +1,11 @@
 export interface multimedia {
-  _id?: number;
+  _id?: string;
   url: string;
   tipo: string;
   estado: string;
-  IdGrupoMultimedia: {
-    _id?: number;
-    nombre: string;
-  };
-  usuario: {
-    _id?: number;
-    nombre: string;
-  };
+  IdGrupoMultimedia: string;
+  usuario: string;
   fecha_creacion: string;
+  fecha_actualizacion: string;
+
 }

@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'listmultheroe/:idHeroe', component: ListMultheroesComponent },
   { path: 'editmultheroe/:idHeroe', component: EditHeroesComponent },
   { path: 'editHeroes/:idHeroe', component: EditHeroesComponent },
+  { path: 'editMult/:idHeroe', component: EditMultimediasComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 
 ];

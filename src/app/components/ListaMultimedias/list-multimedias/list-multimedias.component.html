@@ -1,4 +1,10 @@
-<button type="button" class="btn btn-outline-success">Crear</button>
+<div class="btn-group" role="group" aria-label="Third group">
+    <button [routerLink]="['/editMult', 'nuevo']" type="button" class="btn btn-outline-success">
+<i class="fa fa-plus"></i>
+Nueva multimedia
+</button>
+</div>
+
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -8,12 +14,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let heroe of multsHeroe; let i = index">
-            <th scope="row">{{heroe._id}}</th>
-            <td><img src="{{heroe.url}}" class="img-fluid" alt="..."></td>
+        <tr *ngFor="let mult of multsHeroe; let i = index">
+            <th scope="row">{{mult._id}}</th>
+            <td><img src="{{mult.url}}" class="img-fluid" alt="..."></td>
             <td>
-                <button type="button" class="btn btn-outline-warning">Editar</button>
-                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                <button type="button" class="btn btn-outline-warning" (click)="editarMult(mult._id)">Editar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="eliminarMult(mult)">Eliminar</button>
             </td>
         </tr>
     </tbody>
