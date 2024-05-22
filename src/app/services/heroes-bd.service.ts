@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { URL_SERVICIOS_MONGODB } from '../config/url.services';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { heroe } from '../interfaces/heroe.interface';
 
 @Injectable({
@@ -10,6 +10,9 @@ import { heroe } from '../interfaces/heroe.interface';
 export class HeroesBDService {
   userToken: any;
   constructor(public http: HttpClient) {}
+
+  private searchQuery = new BehaviorSubject<string>('');
+  currentQuery = this.searchQuery.asObservable();
 
   public leerToken() {
     if (localStorage.getItem('token')) {
@@ -80,6 +83,17 @@ export class HeroesBDService {
     return this.http.get(url).pipe(
       map((data) => {
         console.log("Data Inicial",data);
+        return data;
+      })
+    );
+  }
+  getGrupoMultimedias(): any {
+    let url = `${URL_SERVICIOS_MONGODB}/grupomultimedias`;
+    console.log(url);
+
+    return this.http.get(url).pipe(
+      map((data) => {
+        console.log('DATOS grupo', data);
         return data;
       })
     );
@@ -178,4 +192,22 @@ export class HeroesBDService {
       return this.http.put(url, body).pipe(map((data) => data));
     }
   }
+
+  buscarHeroes(termino: string): any {
+    let url = `${URL_SERVICIOS_MONGODB}/buscar/heroes/${termino}`;
+
+
+    return this.http.get(url, {}).pipe(
+      map((data) => {
+        console.log(data);
+        return data;
+      })
+    );
+  }
+
+  updateSearchQuery(query: string) {
+    this.searchQuery.next(query);
+  }
+
+
 }

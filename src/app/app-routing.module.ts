@@ -16,6 +16,7 @@ import { EditMultimediasComponent } from './components/ListaMultimedias/edit-mul
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'buscar', component: HomeComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'listamultimedias', component: ListMultimediasComponent },
   { path: 'listaheroes', component: ListHeroesComponent },

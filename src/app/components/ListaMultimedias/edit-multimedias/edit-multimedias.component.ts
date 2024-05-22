@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { grupoM } from 'src/app/interfaces/grupoM.interface';
 import { multimedia } from 'src/app/interfaces/multimedia.interface';
 import { HeroesBDService } from 'src/app/services/heroes-bd.service';
 import { MultheroeService } from 'src/app/services/multheroe.service';
@@ -12,15 +13,19 @@ import Swal from 'sweetalert2';
 })
 export class EditMultimediasComponent {
   idHeroe!: any;
-
+  _idGr!: any;
+  unGrupo: grupoM[] = [];
   unHeroe: multimedia = {
     url: '',
     tipo: '',
     estado: '',
-    IdGrupoMultimedia: '',
+    IdGrupoMultimedia: {
+      _id: '',
+      nombre: '',
+    },
     usuario: '',
     fecha_creacion: '',
-    fecha_actualizacion: ''
+    fecha_actualizacion: '',
   };
 
   unResultado!: any;
@@ -31,36 +36,53 @@ export class EditMultimediasComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private dataBD: HeroesBDService,
-    private dataMUlt: MultheroeService,
+    private dataMUlt: MultheroeService
   ) {
     this.activatedRoute.params.subscribe((params) => {
       this.idHeroe = params['idHeroe'];
       console.log('IDHEROE', this.idHeroe);
 
       if (this.idHeroe != 'nuevo') {
-        console.log("Entre a el proceso 1");
+        console.log('Entre a el proceso 1');
         this.cargarHeroeBD();
       }
+      this.cargaCombo();
       console.log(this.unHeroe);
     });
   }
 
+  async cargaCombo() {
+    await this.dataBD
+      .getGrupoMultimedias()
+      .toPromise()
+      .then((data: any) => {
+        this.unGrupo = data.resp;
+      });
+    console.log('Este es el grupo  ' + this.unGrupo);
+  }
   async cargarHeroeBD() {
     //this.cargando = true;
-    console.log("Entre a el proceso 2");
+    console.log('Entre a el proceso 2');
     await this.dataBD
       .getMult(this.idHeroe)
       .toPromise()
       .then((data: any) => {
         this.unHeroe = data.resp;
       });
-      console.log('Este es la mult '+this.unHeroe);
+    console.log('Este es la mult ' + this.unHeroe);
   }
 
   guardar() {
     console.log('Se envio Guardar');
+    let combo: any = document.getElementById('imagen');
+
+    let texto: any = combo.options[combo.selectedIndex].text;
+
+    this.unHeroe.IdGrupoMultimedia._id = texto;
     if (this.idHeroe == 'nuevo') {
       console.log('entre a nuevo');
+      console.log(this.unHeroe.url);
+      console.log(this.unHeroe.IdGrupoMultimedia._id);
       this.nuevoMult();
     } else {
       this.actualizarMult();
@@ -69,7 +91,7 @@ export class EditMultimediasComponent {
 
   actualizarMult() {
     //console.log(this.unaDivision);
-    this.dataMUlt.crud_Multimedia(this.unHeroe, 'modificar').subscribe(
+    this.dataMUlt.crud_Multimedias(this.unHeroe, 'modificar').subscribe(
       (res: any) => {
         this.unResultado = res;
 
@@ -101,14 +123,14 @@ export class EditMultimediasComponent {
 
   async nuevoMult() {
     console.log('entre al metodo');
-    await this.dataMUlt.crud_Multimedia(this.unHeroe, 'insertar').subscribe(
+    await this.dataMUlt.crud_Multimedias(this.unHeroe, 'insertar').subscribe(
       (res: any) => {
         this.unResultado = res;
 
         console.log('RESULTADO_NUEVO', this.unResultado);
 
         if (this.unResultado.Ok == true) {
-          this.unaAccion = 'Mensaje:';
+          this.unaAccion = 'Mensaje: multimedia creada';
           this.unMensaje = this.unResultado.msg;
           setTimeout(() => (this.unMensaje = ''), 3000);
 

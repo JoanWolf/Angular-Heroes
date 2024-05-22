@@ -11,8 +11,19 @@
             <label><b>Nombre</b></label>
             <input [(ngModel)]="unHeroe.url" name="url" type="text" class="form-control" placeholder="url" required />
         </div>
+
+        <div class="col-50">
+            <label><b>Grupo ID</b></label>
+            <select [(ngModel)]="unHeroe.IdGrupoMultimedia._id" name="_id" class="form-control" id="imagen" required>
+        <option value="">Seleccione una Multimedia</option>
+        <option *ngFor="let multimedia of unGrupo" [value]="multimedia._id">
+          {{ multimedia._id }}
+        </option>
+      </select>
+        </div>
+
         <button [disabled]="!forma.valid" type="submit" class="btn btn-primary">
-    Submit
-  </button>
+      Submit
+    </button>
     </form>
 </div>

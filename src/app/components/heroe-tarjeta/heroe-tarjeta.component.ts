@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class HeroeTarjetaComponent {
   @Input() heroe: any ={};
 
+
   constructor(private router: Router) {
   }
 

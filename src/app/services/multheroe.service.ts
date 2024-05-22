@@ -19,7 +19,7 @@ export class MultheroeService {
     let galleryArr: (string | number | null)[] = [];
 
     await this.dataBD
-      .getHeroe(idx,true)
+      .getHeroe(idx, true)
       .toPromise()
       .then((resp: any) => {
         //this.heroes = resp.data;
@@ -79,13 +79,78 @@ export class MultheroeService {
     return galleryArr;
   }
 
-  crud_Multimedia(unHeroe: multimedia, unaAccion: string): any {
+  // crud_Multimedia(unHeroe: multimedia, unaAccion: string): any {
+  //   //console.log(unExpediente);
+
+  //   if (unaAccion === 'eliminar') {
+  //     //let parametros2 = new HttpParams();
+
+  //     let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`; //ruta de para eleiminar
+
+  //     return this.http.delete(url).pipe(
+  //       map((data) => {
+  //         return data;
+  //       })
+  //     );
+  //   }
+
+  //   /*
+  //   nombre: string;
+  //   bio: string;
+  //   img: string;
+  //   aparicion: string;
+  //   casa: string;
+  //   _id?: string;
+  //   */
+  //   if (unaAccion === 'insertar') {
+  //     let parametros2 = new HttpParams();
+  //     let url = URL_SERVICIOS_MONGODB + '/multimedias'; //Ruta de creacion
+
+  //     // Begin assigning parameters
+  //     parametros2 = parametros2.append('url', unHeroe.url);
+
+  //     unHeroe.tipo = 'image'
+  //     unHeroe.estado = 'true'
+
+  //     const body = {
+
+  //       estado: unHeroe.estado,
+  //       url: unHeroe.url,
+  //       tipo: unHeroe.tipo,
+
+  //     };
+
+  //     return this.http.post(url, body).pipe(map((data) => data));
+  //   }
+
+  //   if (unaAccion === 'modificar') {
+  //     let parametros = new HttpParams();
+
+  //     let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`;
+
+  //     //let url = URL_SERVICIOS_MONGODB + '/heroes';
+
+  //     // Begin assigning parameters
+  //     parametros = parametros.append('url', unHeroe.url);
+  //     unHeroe.tipo = 'image'
+  //     unHeroe.estado = 'true'
+
+  //     const body = {
+  //       url: unHeroe.url,
+  //     };
+
+  //     //console.log(parametros);
+  //     return this.http.put(url, body).pipe(map((data) => data));
+  //   }
+  // }
+
+  crud_Multimedias(unaMultimedia: multimedia, unaAccion: string): any {
     //console.log(unExpediente);
 
     if (unaAccion === 'eliminar') {
-      //let parametros2 = new HttpParams();
+      let parametros2 = new HttpParams();
 
-      let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`; //ruta de para eleiminar
+      let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unaMultimedia._id}`;
 
       return this.http.delete(url).pipe(
         map((data) => {
@@ -94,30 +159,43 @@ export class MultheroeService {
       );
     }
 
-    /*
-    nombre: string;
-    bio: string;
-    img: string;
-    aparicion: string;
-    casa: string;
-    _id?: string;
-    */
     if (unaAccion === 'insertar') {
       let parametros2 = new HttpParams();
-      let url = URL_SERVICIOS_MONGODB + '/multimedias'; //Ruta de creacion
+      let url = URL_SERVICIOS_MONGODB + '/multimedias';
 
+      console.log(url);
       // Begin assigning parameters
-      parametros2 = parametros2.append('url', unHeroe.url);
+      //parametros2 = parametros2.append('nombre',unHeroe.nombre);
+      //parametros2 = parametros2.append('bio',unHeroe.bio);
+      //parametros2 = parametros2.append('img',unHeroe.img);
+      //parametros2 = parametros2.append('aparicion',unHeroe.aparicion);
+      //parametros2 = parametros2.append('casa',unHeroe.casa);
+      //Begin assigning parameters
+      parametros2 = parametros2.append('url', unaMultimedia.url);
+      parametros2 = parametros2.append(
+        'IdGrupoMultimedia._id',
+        unaMultimedia.IdGrupoMultimedia._id
+      );
+      // parametros2 =parametros2.append('IdGrupoMultimedia.nombre',unaMultimedia.IdGrupoMultimedia.nombre)
+      unaMultimedia.tipo = 'image';
+      unaMultimedia.estado = 'true';
 
-      unHeroe.tipo = 'image'
-      unHeroe.estado = 'true'
-
+      console.log(
+        unaMultimedia.url +
+          '\n' +
+          unaMultimedia.IdGrupoMultimedia._id +
+          '\n' +
+          unaMultimedia.tipo +
+          '\n' +
+          unaMultimedia.estado +
+          '\n'
+      );
       const body = {
-
-        estado: unHeroe.estado,
-        url: unHeroe.url,
-        tipo: unHeroe.tipo,
-
+        url: unaMultimedia.url,
+        tipo: unaMultimedia.tipo,
+        IdGrupoMultimedia: unaMultimedia.IdGrupoMultimedia._id,
+        estado: unaMultimedia.estado,
+        //usuario:unaMultimedia.usuario._id
       };
 
       return this.http.post(url, body).pipe(map((data) => data));
@@ -126,18 +204,31 @@ export class MultheroeService {
     if (unaAccion === 'modificar') {
       let parametros = new HttpParams();
 
-      let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`;
+      let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unaMultimedia._id}`;
 
       //let url = URL_SERVICIOS_MONGODB + '/heroes';
 
       // Begin assigning parameters
-      parametros = parametros.append('url', unHeroe.url);
-      unHeroe.tipo = 'image'
-      unHeroe.estado = 'true'
+      //parametros = parametros.append('nombre',unHeroe.nombre);
+      //parametros = parametros.append('bio',unHeroe.bio);
+      //parametros = parametros.append('img',unHeroe.img);
+      //parametros = parametros.append('aparicion',unHeroe.aparicion);
+      //parametros = parametros.append('casa',unHeroe.casa);
 
+      parametros = parametros.append('url', unaMultimedia.url);
+      parametros = parametros.append(
+        'IdGrupoMultimedia._id',
+        unaMultimedia.IdGrupoMultimedia._id
+      );
+      // parametros2 =parametros2.append('IdGrupoMultimedia.nombre',unaMultimedia.IdGrupoMultimedia.nombre)
+      unaMultimedia.tipo = 'image';
+      unaMultimedia.estado = 'true';
 
       const body = {
-        url: unHeroe.url,
+        url: unaMultimedia.url,
+        tipo: unaMultimedia.tipo,
+        IdGrupoMultimedia: unaMultimedia.IdGrupoMultimedia._id,
+        //usuario:unaMultimedia.usuario._id
       };
 
       //console.log(parametros);
@@ -201,7 +292,6 @@ export class MultheroeService {
   //     parametros = parametros.append('url', unHeroe.url);
   //     unHeroe.tipo = 'image'
   //     unHeroe.estado = 'true'
-
 
   //     const body = {
   //       url: unHeroe.url,

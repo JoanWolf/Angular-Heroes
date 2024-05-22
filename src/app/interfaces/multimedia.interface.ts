@@ -3,9 +3,11 @@ export interface multimedia {
   url: string;
   tipo: string;
   estado: string;
-  IdGrupoMultimedia: string;
+  IdGrupoMultimedia:{
+    _id: string;
+    nombre: string;
+  };
   usuario: string;
   fecha_creacion: string;
   fecha_actualizacion: string;
-
 }

@@ -56,7 +56,7 @@ export class ListMultimediasComponent {
 
   eliminarMult(unHeroe: any) {
     //console.log(this.unaDivision);
-    this.data.crud_Multimedia(unHeroe, 'eliminar').subscribe(
+    this.data.crud_Multimedias(unHeroe, 'eliminar').subscribe(
       (res: any) => {
         this.unResultado = res;
 

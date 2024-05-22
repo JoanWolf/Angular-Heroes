@@ -1,7 +1,46 @@
 <div class="container text-center">
+    <div class="row" style="justify-content: center;">
+        <div id="carrusel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <div *ngFor="let actor of gelleryHeroe; let i = index">
+                        <button *ngIf="i === 0" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" class="active" aria-current="true" [attr.aria-label]="i"></button>
+                        <button *ngIf="i !== 0" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-current="true" [attr.aria-label]="i"></button>
+                    </div>
+                </div>
+
+                <div class="carousel-inner">
+                    <div *ngFor="let multi of gelleryHeroe; let j = index">
+                        <div *ngIf="j === 0" class="carousel-item active">
+                            <img [src]="multi" class="d-block w-100 puntero" alt="..." />
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+                        <div *ngIf="j !== 0" class="carousel-item">
+                            <img [src]="multi" class="d-block w-100 puntero" alt="..." />
+                            <div class="carousel-caption d-none d-md-block">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+            </div>
+        </div>
+    </div>
     <div class="row">
-        <h2>{{Nombre}}</h2>
+        <h2>{{ Nombre }}</h2>
         <p></p>
+
+
+
         <div *ngFor="let imgheroe of gelleryHeroe; let i = index" class="col">
             <!-- <div *ngIf="imgheroe.id === id"> -->
             <app-heroe-gallery [galleryheroes]="imgheroe"></app-heroe-gallery>
