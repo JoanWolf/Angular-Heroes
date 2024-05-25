@@ -5,6 +5,7 @@ import { multimedia } from '../interfaces/multimedia.interface';
 import { URL_SERVICIOS_MONGODB } from '../config/url.services';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs';
+import { MultimediaHeroe } from '../interfaces/multimediaHeroe.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -78,71 +79,6 @@ export class MultheroeService {
     //console.log(galleryArr)
     return galleryArr;
   }
-
-  // crud_Multimedia(unHeroe: multimedia, unaAccion: string): any {
-  //   //console.log(unExpediente);
-
-  //   if (unaAccion === 'eliminar') {
-  //     //let parametros2 = new HttpParams();
-
-  //     let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`; //ruta de para eleiminar
-
-  //     return this.http.delete(url).pipe(
-  //       map((data) => {
-  //         return data;
-  //       })
-  //     );
-  //   }
-
-  //   /*
-  //   nombre: string;
-  //   bio: string;
-  //   img: string;
-  //   aparicion: string;
-  //   casa: string;
-  //   _id?: string;
-  //   */
-  //   if (unaAccion === 'insertar') {
-  //     let parametros2 = new HttpParams();
-  //     let url = URL_SERVICIOS_MONGODB + '/multimedias'; //Ruta de creacion
-
-  //     // Begin assigning parameters
-  //     parametros2 = parametros2.append('url', unHeroe.url);
-
-  //     unHeroe.tipo = 'image'
-  //     unHeroe.estado = 'true'
-
-  //     const body = {
-
-  //       estado: unHeroe.estado,
-  //       url: unHeroe.url,
-  //       tipo: unHeroe.tipo,
-
-  //     };
-
-  //     return this.http.post(url, body).pipe(map((data) => data));
-  //   }
-
-  //   if (unaAccion === 'modificar') {
-  //     let parametros = new HttpParams();
-
-  //     let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`;
-
-  //     //let url = URL_SERVICIOS_MONGODB + '/heroes';
-
-  //     // Begin assigning parameters
-  //     parametros = parametros.append('url', unHeroe.url);
-  //     unHeroe.tipo = 'image'
-  //     unHeroe.estado = 'true'
-
-  //     const body = {
-  //       url: unHeroe.url,
-  //     };
-
-  //     //console.log(parametros);
-  //     return this.http.put(url, body).pipe(map((data) => data));
-  //   }
-  // }
 
   crud_Multimedias(unaMultimedia: multimedia, unaAccion: string): any {
     //console.log(unExpediente);
@@ -236,69 +172,99 @@ export class MultheroeService {
     }
   }
 
-  // crud_Multimedia_Heroe(unHeroe: multHeroe, unaAccion: string): any {
+  crud_multimediasHeroes(
+    unaMultimediaHeroe: MultimediaHeroe,
+    unaAccion: string
+  ): any {
+    //console.log(unExpediente);
 
-  //   //console.log(unExpediente);
+    if (unaAccion === 'eliminar') {
+      let parametros2 = new HttpParams();
 
-  //   if (unaAccion === 'eliminar') {
-  //     //let parametros2 = new HttpParams();
+      let url = `${URL_SERVICIOS_MONGODB}/multimediasheroe/${unaMultimediaHeroe._id}`;
 
-  //     let url = `${URL_SERVICIOS_MONGODB}/multimedias/heroe/${unHeroe._id}`; //ruta de para eleiminar
+      return this.http.delete(url).pipe(
+        map((data) => {
+          return data;
+        })
+      );
+    }
 
-  //     return this.http.delete(url).pipe(
-  //       map((data) => {
-  //         return data;
-  //       })
-  //     );
-  //   }
+    /*
+    nombre: string;
+    bio: string;
+    img: string;
+    aparicion: string;
+    casa: string;
+    _id?: string;
+    */
 
-  //   /*
-  //   nombre: string;
-  //   bio: string;
-  //   img: string;
-  //   aparicion: string;
-  //   casa: string;
-  //   _id?: string;
-  //   */
-  //   if (unaAccion === 'insertar') {
-  //     let parametros2 = new HttpParams();
-  //     let url = URL_SERVICIOS_MONGODB + '/multimedias/heroe/'; //Ruta de creacion
+    if (unaAccion === 'insertar') {
+      let parametros2 = new HttpParams();
+      let url = URL_SERVICIOS_MONGODB + '/multimediasheroe';
 
-  //     // Begin assigning parameters
-  //     parametros2 = parametros2.append('url', unHeroe.url);
+      // Begin assigning parameters
+      parametros2 = parametros2.append(
+        'IdMultimedia',
+        unaMultimediaHeroe.IdMultimedia
+      );
+      parametros2 = parametros2.append('IdHeroe', unaMultimediaHeroe.IdHeroe);
 
-  //     unHeroe.tipo = 'image'
-  //     unHeroe.estado = 'true'
+      const body = {
+        IdMultimedia: unaMultimediaHeroe.IdMultimedia,
+        IdHeroe: unaMultimediaHeroe.IdHeroe,
+      };
 
-  //     const body = {
+      return this.http.post(url, body).pipe(map((data) => data));
+    }
 
-  //       estado: unHeroe.estado,
-  //       url: unHeroe.url,
-  //       tipo: unHeroe.tipo,
+    if (unaAccion === 'modificar') {
+      console.log('entre al editar multimedias');
+      let parametros = new HttpParams();
 
-  //     };
+      let url = `${URL_SERVICIOS_MONGODB}/multimediasheroe/${unaMultimediaHeroe._id}`;
+      console.log(url);
 
-  //     return this.http.post(url, body).pipe(map((data) => data));
-  //   }
+      //let url = URL_SERVICIOS_MONGODB + '/heroes';
+      //Borramos la relacion
+      let des = false;
+      this.http
+        .delete(url)
+        .pipe(
+          map((data) => {
+            return data;
+          })
+        )
+        .subscribe((res: any) => {
+          //console.log(this.unResultado);
+          if (res.Ok == true) {
+            des = true;
+          } else {
+            des = false;
+          }
+        });
 
-  //   if (unaAccion === 'modificar') {
-  //     let parametros = new HttpParams();
+      if ((des = true)) {
+        // Begin assigning parameters
+        parametros = parametros.append(
+          'IdMultimedia',
+          unaMultimediaHeroe.IdMultimedia
+        );
+        parametros = parametros.append('IdHeroe', unaMultimediaHeroe.IdHeroe);
+        parametros = parametros.append('_id', unaMultimediaHeroe._id!);
 
-  //     let url = `${URL_SERVICIOS_MONGODB}/multimedias/${unHeroe._id}`;
+        const body = {
+          IdMultimedia: unaMultimediaHeroe.IdMultimedia,
+          IdHeroe: unaMultimediaHeroe.IdHeroe,
+        };
 
-  //     //let url = URL_SERVICIOS_MONGODB + '/heroes';
+        //La volvemos a crear
+        let url2 = URL_SERVICIOS_MONGODB + '/multimediasheroe';
+        return this.http.post(url2, body).pipe(map((data) => data));
+      }
 
-  //     // Begin assigning parameters
-  //     parametros = parametros.append('url', unHeroe.url);
-  //     unHeroe.tipo = 'image'
-  //     unHeroe.estado = 'true'
-
-  //     const body = {
-  //       url: unHeroe.url,
-  //     };
-
-  //     //console.log(parametros);
-  //     return this.http.put(url, body).pipe(map((data) => data));
-  //   }
-  // }
+      // console.log(parametros);
+      // return this.http.put(url, body).pipe(map((data) => data));
+    }
+  }
 }

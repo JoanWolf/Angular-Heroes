@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'heroegallery/:idHeroe', component: HeroeGalleryComponent},
   { path: 'gellery/:idHeroe', component: GalleryComponent },
   { path: 'listmultheroe/:idHeroe', component: ListMultheroesComponent },
-  { path: 'editmultheroe/:idHeroe', component: EditHeroesComponent },
+  { path: 'editmultheroe/:idHeroe', component: EditMultheroesComponent },
   { path: 'editHeroes/:idHeroe', component: EditHeroesComponent },
   { path: 'editMult/:idHeroe', component: EditMultimediasComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },

@@ -1,23 +1,30 @@
-<button type="button" class="btn btn-outline-success">Crear</button>
+<div class="btn-group" role="group" aria-label="Third group">
+    <button (click)="NuevoMult()" type="button" class="btn btn-outline-success">
+<i class="fa fa-plus"></i>
+Nueva multimedia
+</button>
+</div>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">nombre</th>
             <th scope="col">idHeroe</th>
+            <th scope="col">idmult</th>
             <th scope="col">img</th>
             <th scope="col">actions</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let heroe of multsHeroe; let i = index">
-            <th scope="row">{{heroe.IdMultimedia._id}}</th>
+            <th scope="row">{{heroe._id}}</th>
             <td>{{heroe.IdHeroe.nombre}}</td>
             <td>{{heroe.IdHeroe._id}}</td>
+            <th>{{heroe.IdMultimedia._id}}</th>
             <td><img src="{{heroe.IdMultimedia.url}}" class="img-fluid" alt="{{heroe.IdHeroe.nombre}}"></td>
             <td>
-                <button type="button" class="btn btn-outline-warning">Editar</button>
-                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                <button type="button" class="btn btn-outline-warning" (click)="editarMult(heroe._id)">Editar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="eliminarMult(heroe)">Eliminar</button>
             </td>
         </tr>
     </tbody>
